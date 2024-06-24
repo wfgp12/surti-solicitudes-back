@@ -15,6 +15,17 @@ const TableConfig = sequelize.define('table_config', {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
     },
+    order: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+},{
+    indexes: [
+        {
+            unique: true,
+            fields: ['tableName', 'columnName']
+        }
+    ]
 });
 
 module.exports = TableConfig;

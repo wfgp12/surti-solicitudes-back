@@ -91,7 +91,7 @@ module.exports = {
     updateUser: async (req, res) => {
         try {
             const { id } = req.params;
-            const { name, document, email, id_role, password } = req.body;
+            const { name, document, email, id_role } = req.body;
 
             const [updatedCount] = await User.update({ name, document, email, id_role }, { where:{id} });
 
@@ -118,7 +118,8 @@ module.exports = {
             if (deletedCount === 0) {
                 return res.status(404).json(errorResponse('User not found', 404));
             }
-            res.status(204).json();
+
+            res.status(200).json(successResponse(true));
         } catch (error) {
             res.status(500).json(errorResponse(error.message, 500));
         }

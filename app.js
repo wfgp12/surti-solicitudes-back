@@ -8,9 +8,10 @@ const sequelize = require('./config/database');
 // Routes
 const permissionRoutes = require('./routes/permissionRoutes');
 const roleRouter = require('./routes/roleRouter');
-const userRouter = require('./routes/userRoutes');
 const sectionRouter = require('./routes/sectionRoutes');
 const siteRouter = require('./routes/siteRoutes');
+const tableConfigRouter = require('./routes/tableConfigRoutes');
+const userRouter = require('./routes/userRoutes');
 // Helpers
 const initializeDatabase = require('./helpers/initializeDatabase');
 
@@ -30,6 +31,7 @@ app.use('/api/roles', roleRouter);
 app.use('/api/users', userRouter);
 app.use('/api/sections', sectionRouter);
 app.use('/api/sites', siteRouter);
+app.use('/api/table-config', tableConfigRouter);
 
 sequelize.sync()
     .then(async() => {

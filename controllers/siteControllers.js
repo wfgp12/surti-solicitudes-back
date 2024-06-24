@@ -65,7 +65,7 @@ module.exports = {
                 return res.status(404).json(errorResponse('Sede no encontrada', 404));
             }
             await site.destroy();
-            res.status(204).json();
+            res.status(200).json(successResponse(true));
         } catch (error) {
             res.status(500).json(errorResponse(error.message, 500));
         }

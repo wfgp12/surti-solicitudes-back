@@ -3,7 +3,7 @@ const { encryptData } = require('./crypto-helper');
 
 async function initializeDatabase() {
     try {
-        const roles = ['administrador'];
+        const roles = ['asesora_comercial', 'lider_de_seccion', 'impulsadora', 'supervisor', 'administracion', 'director_comercial', 'asesor_complementario', 'coordinador_de_bodega', 'coordinador_de_compras', 'administrador'];
         await Promise.all(roles.map(async (roleName) => {
             const existingRole = await Rol.findOne({ where: { name: roleName } });
             if (!existingRole) {
@@ -21,18 +21,18 @@ async function initializeDatabase() {
             }
         }));
 
-        
+
         const adminRole = await Rol.findOne({ where: { name: 'administrador' } });
         const adminPermissions = await Permission.findAll();
 
-        const adminUser = await User.findOne({ where: { email: 'admin@example.com' } }); 
+        const adminUser = await User.findOne({ where: { email: 'admin@example.com' } });
 
         if (!adminUser) {
             const newUser = await User.create({
                 name: 'Administrador',
                 document: '123456789',
                 email: 'admin@example.com',
-                password: await encryptData('adminpassword'), 
+                password: await encryptData('adminpassword'),
                 id_role: adminRole.id
             });
 

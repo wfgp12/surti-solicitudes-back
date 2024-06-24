@@ -48,7 +48,7 @@ module.exports = {
     getRoleSelector: async (req, res) => {
         try {
             const role =  await Rol.findAll({
-                where: {name: { [Op.not]: 'administrador' } },
+                // where: {name: { [Op.not]: 'administrador' } },
                 attributes: ['id', 'name']
             });
             if (role) {
@@ -94,7 +94,7 @@ module.exports = {
             const role = await Rol.findByPk(req.params.id);
             if (role) {
                 await role.destroy();
-                res.status(204).send();
+                res.status(200).json(successResponse(true));
             } else {
                 res.status(404).json(errorResponse('Rol no encontrado', 404));
             }

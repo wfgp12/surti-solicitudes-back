@@ -70,16 +70,7 @@ module.exports = {
                 if (!role) {
                     return Promise.reject('Rol no existe');
                 }
-            }).bail(),
-        body('password').optional().notEmpty().withMessage('Password is required').custom(async (value, { req }) => {
-            const user = await User.findByPk(req.params.id);
-            if (user) {
-                const isSamePassword = await compareEncryptedData(value, user.password);
-                if (isSamePassword) {
-                    return Promise.reject('New password cannot be the same as the old password');
-                }
-            }
-        }),
+            }).bail()
     ],
 
     deleteUser: [
