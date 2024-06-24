@@ -2,7 +2,6 @@
 const { body, param } = require('express-validator');
 
 const { Site } = require('../../models');
-const { Op } = require('sequelize');
 
 
 module.exports = {
