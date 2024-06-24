@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { successResponse, errorResponse } = require("../helpers/response-helper");
 const Permission = require("../models/permission");
 const Rol = require("../models/role");
@@ -33,6 +34,21 @@ module.exports = {
                     },
                     attributes: ['id', 'name']
                 },
+                attributes: ['id', 'name']
+            });
+            if (role) {
+                res.json(successResponse(role));
+            } else {
+                res.status(404).json(errorResponse('Rol no encontrado', 404));
+            }
+        } catch (error) {
+            res.status(500).json(errorResponse(error.message, 500));
+        }
+    },
+    getRoleSelector: async (req, res) => {
+        try {
+            const role =  await Rol.findAll({
+                where: {name: { [Op.not]: 'administrador' } },
                 attributes: ['id', 'name']
             });
             if (role) {

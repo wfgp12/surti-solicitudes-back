@@ -13,6 +13,11 @@ roleRouter.post('/', [
     roleValidator.createRole, 
     handleErrorsValidate
 ], roleController.createRole);
+roleRouter.get('/selector', [
+    validateToken,
+    validatePermission('administrador'), 
+    handleErrorsValidate
+], roleController.getRoleSelector);
 roleRouter.get('/', [
     validateToken,
     validatePermission('administrador'),

@@ -37,7 +37,6 @@ const validateToken = [
 
                 return true;
             } catch (error) {
-                console.log(error)
                 throw new Error('Token de sesión inválido');
             }
         }).bail()
