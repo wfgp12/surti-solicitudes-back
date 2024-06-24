@@ -20,7 +20,7 @@ tableConfigRouter.post('/', [
 
 tableConfigRouter.get('/:tableName', [
     validateToken,
-    validatePermission('administrador'),
+    // validatePermission('solicitante'),
     handleErrorsValidate
 ], tableConfigController.getTableConfig)
 
